@@ -41,13 +41,13 @@ public class TokenParameters {
         final Duration duration
     ) {
         Date issuedAt = new Date();
+        long durationL = issuedAt.getTime() + 1000 * duration.get(ChronoUnit.SECONDS);
+
         return hiddenBuilder()
                 .claims(new HashMap<>())
                 .issuedAt(issuedAt)
                 .subject(subject)
-                .expiredAt(new Date(
-                        issuedAt.getTime() + 1000 * duration.get(ChronoUnit.SECONDS)
-                ));
+                .expiredAt(new Date(durationL));
     }
 
     public static class TokenParametersBuilder {
@@ -63,7 +63,11 @@ public class TokenParameters {
             final String key,
             final Object value
         ) {
-            this.claims.put(key, value);
+            if (this.claims != null) {
+                this.claims.put(key, value);
+            } else {
+                this.claims = new HashMap<>();
+            }
             return this;
         }
 
@@ -74,7 +78,11 @@ public class TokenParameters {
          * @return          TokenParametersBuilder
          */
         public TokenParametersBuilder claims(final Map<String, Object> claims) {
-            this.claims.putAll(claims);
+            if (this.claims != null) {
+                this.claims.putAll(claims);
+            } else {
+                this.claims = new HashMap<>();
+            }
             return this;
         }
 
@@ -124,7 +132,5 @@ public class TokenParameters {
                     expiredAt
             );
         }
-
     }
-
 }
