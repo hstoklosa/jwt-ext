@@ -1,5 +1,7 @@
 # jwt-ext
 
+[![codecov](https://codecov.io/gh/hstoklosa/jwt-ext/graph/badge.svg?token=V3U1YHZXM7)](https://codecov.io/gh/hstoklosa/jwt-ext)
+
 ## Usage
 
 ...
