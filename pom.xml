@@ -34,6 +34,7 @@
     <java.version>21</java.version>
     <jjwt.version>0.12.6</jjwt.version>
     <lombok.version>1.18.34</lombok.version>
+    <jacoco.version>0.8.12</jacoco.version>
     <junit.version>5.10.1</junit.version>
   </properties>
 
@@ -78,6 +79,28 @@
   <build>
     <pluginManagement>
       <plugins>
+        <!-- REF: https://medium.com/@pravin3c/setup-jacoco-for-gradle-and-maven-projects-and-integrate-with-github-actions-1cb822d960cf -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <!--first execution: preparing JaCoCo runtime agent-->
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <!--second execution: creating code coverage reports-->
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.3.2</version>
