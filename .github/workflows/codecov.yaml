@@ -1,0 +1,33 @@
+name: codecov
+on: [push, pull_request]
+
+jobs:
+  codecov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4.7.0
+        with:
+          distribution: "temurin"
+          java-version: 21
+
+      - uses: actions/cache@v4.2.0
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-
+
+      - name: Build and run tests with JaCoCo
+        run: |
+          mvn clean install
+
+      - name: Upload coverage reports to codecov.io
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./target/site/jacoco/jacoco.xml
+          fail_ci_if_error: false
