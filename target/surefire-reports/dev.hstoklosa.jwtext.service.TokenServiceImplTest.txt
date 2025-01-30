@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: dev.hstoklosa.jwtext.service.TokenServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.298 s <<< FAILURE! -- in dev.hstoklosa.jwtext.service.TokenServiceImplTest
+dev.hstoklosa.jwtext.service.TokenServiceImplTest.isExpiredWithExpiredTokenShouldReturnTrue -- Time elapsed: 2.011 s <<< ERROR!
+io.jsonwebtoken.ExpiredJwtException: JWT expired 1678 milliseconds ago at 2025-01-30T21:57:54.000Z. Current time: 2025-01-30T21:57:55.678Z. Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:691)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36)
+	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:830)
+	at dev.hstoklosa.jwtext.service.TokenServiceImpl.isExpired(TokenServiceImpl.java:46)
+	at dev.hstoklosa.jwtext.service.TokenServiceImplTest.isExpiredWithExpiredTokenShouldReturnTrue(TokenServiceImplTest.java:73)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

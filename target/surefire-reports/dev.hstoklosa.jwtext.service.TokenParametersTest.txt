@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: dev.hstoklosa.jwtext.service.TokenParametersTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in dev.hstoklosa.jwtext.service.TokenParametersTest
