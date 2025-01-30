@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="2.298" tests="7" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="2.397" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/exotic/projects/jwt-ext/target/surefire/surefirebooter-20250130215753006_3.jar /home/exotic/projects/jwt-ext/target/surefire 2025-01-30T21-57-52_944-jvmRun1 surefire-20250130215753006_1tmp surefire_0-20250130215753006_2tmp"/>
+    <property name="sun.java.command" value="/home/exotic/projects/jwt-ext/target/surefire/surefirebooter-20250130225414204_3.jar /home/exotic/projects/jwt-ext/target/surefire 2025-01-30T22-54-14_044-jvmRun1 surefire-20250130225414204_1tmp surefire_0-20250130225414204_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/exotic/projects/jwt-ext/target/test-classes:/home/exotic/projects/jwt-ext/target/classes:/home/exotic/.m2/repository/io/jsonwebtoken/jjwt-api/0.12.6/jjwt-api-0.12.6.jar:/home/exotic/.m2/repository/io/jsonwebtoken/jjwt-impl/0.12.6/jjwt-impl-0.12.6.jar:/home/exotic/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.12.6/jjwt-jackson-0.12.6.jar:/home/exotic/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.12.7.1/jackson-databind-2.12.7.1.jar:/home/exotic/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.12.7/jackson-annotations-2.12.7.jar:/home/exotic/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.12.7/jackson-core-2.12.7.jar:/home/exotic/.m2/repository/org/projectlombok/lombok/1.18.34/lombok-1.18.34.jar:/home/exotic/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.1/junit-jupiter-api-5.10.1.jar:/home/exotic/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/exotic/.m2/repository/org/junit/platform/junit-platform-commons/1.10.1/junit-platform-commons-1.10.1.jar:/home/exotic/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/exotic/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.1/junit-jupiter-engine-5.10.1.jar:/home/exotic/.m2/repository/org/junit/platform/junit-platform-engine/1.10.1/junit-platform-engine-1.10.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/exotic/projects/jwt-ext/target/surefire/surefirebooter-20250130215753006_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/exotic/projects/jwt-ext/target/surefire/surefirebooter-20250130225414204_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.5+11-Ubuntu-1ubuntu120.04"/>
     <property name="user.name" value="exotic"/>
@@ -53,25 +53,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="withInvalidClaimShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.238"/>
-  <testcase name="shouldReturnCorrectSubject" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.003"/>
-  <testcase name="shouldGenerateValidToken" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.003"/>
-  <testcase name="isExpiredWithValidTokenShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
-  <testcase name="isExpiredWithExpiredTokenShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="2.011">
-    <error message="JWT expired 1678 milliseconds ago at 2025-01-30T21:57:54.000Z. Current time: 2025-01-30T21:57:55.678Z. Allowed clock skew: 0 milliseconds." type="io.jsonwebtoken.ExpiredJwtException"><![CDATA[io.jsonwebtoken.ExpiredJwtException: JWT expired 1678 milliseconds ago at 2025-01-30T21:57:54.000Z. Current time: 2025-01-30T21:57:55.678Z. Allowed clock skew: 0 milliseconds.
-	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:691)
-	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:364)
-	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:94)
-	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:36)
-	at io.jsonwebtoken.impl.io.AbstractParser.parse(AbstractParser.java:29)
-	at io.jsonwebtoken.impl.DefaultJwtParser.parseSignedClaims(DefaultJwtParser.java:830)
-	at dev.hstoklosa.jwtext.service.TokenServiceImpl.isExpired(TokenServiceImpl.java:46)
-	at dev.hstoklosa.jwtext.service.TokenServiceImplTest.isExpiredWithExpiredTokenShouldReturnTrue(TokenServiceImplTest.java:73)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-]]></error>
-  </testcase>
+  <testcase name="withInvalidClaimShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.34"/>
+  <testcase name="shouldReturnCorrectSubject" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
+  <testcase name="shouldGenerateValidToken" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
+  <testcase name="isExpiredWithValidTokenShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.001"/>
+  <testcase name="isExpiredWithExpiredTokenShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="2.006"/>
   <testcase name="shouldReturnCorrectClaims" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
-  <testcase name="withValidClaimShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
+  <testcase name="withValidClaimShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.001"/>
 </testsuite>

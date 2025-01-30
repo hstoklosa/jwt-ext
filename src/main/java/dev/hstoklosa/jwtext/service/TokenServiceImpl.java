@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.ExpiredJwtException;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -39,14 +40,18 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public boolean isExpired(final String token) {
-        Jws<Claims> claims = Jwts
-                .parser()
-                .verifyWith(key)
-                .build()
-                .parseSignedClaims(token);
-        return claims.getPayload()
-                .getExpiration()
-                .before(new Date());
+        try {
+            Jws<Claims> claims = Jwts
+                    .parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token);
+            return claims.getPayload()
+                    .getExpiration()
+                    .before(new Date());
+        } catch (ExpiredJwtException e) {
+            return true;
+        }
     }
 
     @Override
@@ -85,5 +90,4 @@ public class TokenServiceImpl implements TokenService {
                 .parseSignedClaims(token);
         return new HashMap<>(claims.getPayload());
     }
-
 }

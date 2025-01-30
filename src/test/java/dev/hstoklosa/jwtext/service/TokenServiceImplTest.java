@@ -133,5 +133,4 @@ class TokenServiceImplTest {
         assertEquals("value1", claims.get("key1"));
         assertEquals(123, claims.get("key2"));
     }
-
 }

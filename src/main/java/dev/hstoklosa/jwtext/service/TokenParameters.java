@@ -63,11 +63,14 @@ public class TokenParameters {
             final String key,
             final Object value
         ) {
+            this.claims.put(key, value);
+
             if (this.claims != null) {
                 this.claims.put(key, value);
             } else {
                 this.claims = new HashMap<>();
             }
+
             return this;
         }
 
@@ -83,6 +86,7 @@ public class TokenParameters {
             } else {
                 this.claims = new HashMap<>();
             }
+            
             return this;
         }
 
