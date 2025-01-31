@@ -1,8 +1,8 @@
 package dev.hstoklosa.jwtext.service;
 
-import java.util.Map;
-
 import dev.hstoklosa.jwtext.model.TokenParameters;
+
+import java.util.Map;
 
 public interface TokenService {
 
@@ -38,7 +38,7 @@ public interface TokenService {
     );
 
     /**
-     * Returns the "sub" claim of the passed JWT token.
+     * Returns the "sub" claim of a received JWT token.
      *
      * @param token     the provided JWT token
      * @return          the subject of the JWT token
@@ -46,10 +46,19 @@ public interface TokenService {
     String getSubject(String token);
 
     /**
-     * Returns a payload of the JWT token as a Map.
+     * Returns the payload of a JWT token as a Map.
      *
      * @param token     the provided JWT token
      * @return          the key-value pairs from the payload
      */
     Map<String, Object> claims(String token);
+
+
+    /**
+     * Returns the type of a JWT token.
+     *
+     * @param token     a JWT token
+     * @return          the type of JWT token
+     */
+    String getType(String token);
 }
