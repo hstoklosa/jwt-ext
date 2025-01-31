@@ -29,6 +29,9 @@ public class TokenParameters {
     /** The date when the JWT token will be expired. */
     private Date expiredAt;
 
+    /** Type of the JWT token. */
+    private String type;
+
     /**
      * Creates a builder for the TokenParameters class.
      *
@@ -38,12 +41,14 @@ public class TokenParameters {
      */
     public static TokenParametersBuilder builder(
         final String subject,
+        final String type,
         final Duration duration
     ) {
         Date issuedAt = new Date();
         long durationL = issuedAt.getTime() + 1000 * duration.get(ChronoUnit.SECONDS);
 
         return hiddenBuilder()
+                .type(type)
                 .claims(new HashMap<>())
                 .issuedAt(issuedAt)
                 .subject(subject)
@@ -133,7 +138,8 @@ public class TokenParameters {
                     claims,
                     subject,
                     issuedAt,
-                    expiredAt
+                    expiredAt,
+                    type
             );
         }
     }
