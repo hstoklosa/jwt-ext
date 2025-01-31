@@ -1,6 +1,4 @@
-package dev.hstoklosa.jwtext.service;
-
-import org.junit.jupiter.api.Test;
+package dev.hstoklosa.jwtext.model;
 
 import dev.hstoklosa.jwtext.model.TokenParameters;
 
@@ -8,6 +6,8 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,7 +20,7 @@ class TokenParametersTest {
         Duration duration = Duration.ofMinutes(30);
 
         TokenParameters tokenParameters = 
-            TokenParameters.builder(subject, duration).build();
+            TokenParameters.builder(subject, "any", duration).build();
 
         assertNotNull(tokenParameters);
         assertEquals(subject, tokenParameters.getSubject());
@@ -36,7 +36,7 @@ class TokenParametersTest {
         Date issuedAt = new Date();
 
         TokenParameters tokenParameters = 
-            TokenParameters.builder(subject, duration)
+            TokenParameters.builder(subject, "any", duration)
                     .issuedAt(issuedAt)
                     .build();
 
@@ -51,7 +51,7 @@ class TokenParametersTest {
         Date expiredAt = new Date();
 
         TokenParameters tokenParameters = 
-            TokenParameters.builder(subject, duration)
+            TokenParameters.builder(subject, "any", duration)
                 .expiredAt(expiredAt)
                 .build();
 
@@ -66,7 +66,7 @@ class TokenParametersTest {
         String subject = "testSubject";
 
         TokenParameters tokenParameters = 
-            TokenParameters.builder(baseSubject, duration)
+            TokenParameters.builder(baseSubject, "any", duration)
                 .subject(subject)
                 .build();
 
@@ -82,7 +82,7 @@ class TokenParametersTest {
         String value = "testValue";
 
         TokenParameters tokenParameters = 
-            TokenParameters.builder(subject, duration)
+            TokenParameters.builder(subject, "any", duration)
                 .claim(key, value)
                 .build();
 
@@ -104,7 +104,7 @@ class TokenParametersTest {
         claims.put(key2, value2);
 
         TokenParameters tokenParameters 
-            = TokenParameters.builder(subject, duration)
+            = TokenParameters.builder(subject, "any", duration)
                 .claims(claims)
                 .build();
 

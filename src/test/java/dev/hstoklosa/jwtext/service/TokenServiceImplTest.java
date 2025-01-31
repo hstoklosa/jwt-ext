@@ -2,6 +2,7 @@ package dev.hstoklosa.jwtext.service;
 
 import dev.hstoklosa.jwtext.model.TokenParameters;
 import dev.hstoklosa.jwtext.service.TokenServiceImpl;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -26,10 +27,11 @@ class TokenServiceImplTest {
     @Test
     void shouldGenerateValidToken() {
         String subject = "testSubject";
+        String type = "any";
         Duration duration = Duration.ofMinutes(30);
 
         TokenParameters params = 
-            TokenParameters.builder(subject, duration).build();
+            TokenParameters.builder(subject, type, duration).build();
         String token = tokenService.create(params);
 
         assertNotNull(token);
@@ -39,10 +41,11 @@ class TokenServiceImplTest {
     @Test
     void isExpiredWithValidTokenShouldReturnFalse() {
         String subject = "testSubject";
+        String type = "any";
         Duration duration = Duration.ofMinutes(30);
 
         TokenParameters params = 
-            TokenParameters.builder(subject, duration).build();
+            TokenParameters.builder(subject, type, duration).build();
         String token = tokenService.create(params);
 
         assertFalse(tokenService.isExpired(token));
@@ -51,10 +54,11 @@ class TokenServiceImplTest {
     @Test
     void isExpiredWithExpiredTokenShouldReturnTrue() {
         String subject = "testSubject";
+        String type = "any";
         Duration duration = Duration.ofSeconds(1);
 
         TokenParameters params = 
-            TokenParameters.builder(subject, duration).build();
+            TokenParameters.builder(subject, type, duration).build();
         String token = tokenService.create(params);
 
         try {
@@ -69,10 +73,11 @@ class TokenServiceImplTest {
     @Test
     void withValidClaimShouldReturnTrue() {
         String subject = "testSubject";
+        String type = "any";
         Duration duration = Duration.ofMinutes(30);
 
         TokenParameters params = 
-            TokenParameters.builder(subject, duration)
+            TokenParameters.builder(subject, type, duration)
                     .claim("testKey", "testValue")
                     .build();
         String token = tokenService.create(params);
@@ -83,10 +88,11 @@ class TokenServiceImplTest {
     @Test
     void withInvalidClaimShouldReturnFalse() {
         String subject = "testSubject";
+        String type = "any";
         Duration duration = Duration.ofMinutes(30);
 
         TokenParameters params 
-            = TokenParameters.builder(subject, duration)
+            = TokenParameters.builder(subject, type, duration)
                     .claim("testKey", "testValue")
                     .build();
         String token = tokenService.create(params);
@@ -97,10 +103,11 @@ class TokenServiceImplTest {
     @Test
     void shouldReturnCorrectSubject() {
         String subject = "testSubject";
+        String type = "any";
         Duration duration = Duration.ofMinutes(30);
 
         TokenParameters params = 
-            TokenParameters.builder(subject, duration).build();
+            TokenParameters.builder(subject, type, duration).build();
         String token = tokenService.create(params);
 
         assertEquals(subject, tokenService.getSubject(token));
@@ -109,6 +116,7 @@ class TokenServiceImplTest {
     @Test
     void shouldReturnCorrectClaims() {
         String subject = "testSubject";
+        String type = "any";
         Duration duration = Duration.ofMinutes(30);
         
         Map<String, Object> customClaims = new HashMap<>();
@@ -116,7 +124,7 @@ class TokenServiceImplTest {
         customClaims.put("key2", 123);
 
         TokenParameters params = 
-            TokenParameters.builder(subject, duration)
+            TokenParameters.builder(subject, type, duration)
                     .claims(customClaims)
                     .build();
         String token = tokenService.create(params);
@@ -125,5 +133,18 @@ class TokenServiceImplTest {
         assertNotNull(claims);
         assertEquals("value1", claims.get("key1"));
         assertEquals(123, claims.get("key2"));
+    }
+
+    @Test
+    void shouldReturnCorrectType() {
+        String subject = "testSubject";
+        String type = "any";
+        Duration duration = Duration.ofMinutes(30);
+
+        TokenParameters params 
+            = TokenParameters.builder(subject, type, duration).build();
+        String token = tokenService.create(params);
+
+        assertEquals(type, tokenService.getType(token));
     }
 }
