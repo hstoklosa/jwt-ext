@@ -1,5 +1,8 @@
 package dev.hstoklosa.jwtext.redis;
 
+/**
+ * Schema interface for the RedisTokenStorage implementation.
+ */
 public interface RedisSchema {
     /**
      * Redis key to be stored with the JWT token.

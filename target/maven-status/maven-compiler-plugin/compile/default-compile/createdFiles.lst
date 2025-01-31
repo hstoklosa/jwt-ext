@@ -1,4 +1,10 @@
-dev/hstoklosa/jwtext/model/TokenParameters$TokenParametersBuilder.class
+dev/hstoklosa/jwtext/storage/TokenStorageImpl.class
+dev/hstoklosa/jwtext/redis/RedisSchema.class
 dev/hstoklosa/jwtext/model/TokenParameters.class
+dev/hstoklosa/jwtext/service/PersistentTokenServiceImpl.class
 dev/hstoklosa/jwtext/service/TokenServiceImpl.class
 dev/hstoklosa/jwtext/service/TokenService.class
+dev/hstoklosa/jwtext/storage/TokenStorage.class
+dev/hstoklosa/jwtext/storage/RedisTokenStorageImpl.class
+dev/hstoklosa/jwtext/redis/DefaultRedisSchema.class
+dev/hstoklosa/jwtext/model/TokenParameters$TokenParametersBuilder.class

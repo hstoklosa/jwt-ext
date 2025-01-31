@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="2.265" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="2.022" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -53,12 +53,16 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="withInvalidClaimShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.214"/>
-  <testcase name="shouldReturnCorrectSubject" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.003"/>
-  <testcase name="shouldGenerateValidToken" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
-  <testcase name="shouldReturnCorrectType" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
-  <testcase name="isExpiredWithValidTokenShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.003"/>
-  <testcase name="isExpiredWithExpiredTokenShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="2.021"/>
-  <testcase name="shouldReturnCorrectClaims" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.002"/>
-  <testcase name="withValidClaimShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.TokenServiceImplTest" time="0.001"/>
+  <testcase name="withInvalidClaimShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.003"/>
+  <testcase name="shouldReturnCorrectSubject" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.001"/>
+  <testcase name="withExistingTokenShouldReturnExistingToken" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.001"/>
+  <testcase name="shouldGenerateValidToken" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.002"/>
+  <testcase name="shouldReturnCorrectType" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.002"/>
+  <testcase name="withValidTokenShouldReturnFalse" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.001"/>
+  <testcase name="shouldReturnCorrectClaims" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.003">
+    <system-out><![CDATA[value1
+]]></system-out>
+  </testcase>
+  <testcase name="withExpiredTokenShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="2.003"/>
+  <testcase name="withValidClaimShouldReturnTrue" classname="dev.hstoklosa.jwtext.service.PersistentTokenServiceImplTests" time="0.001"/>
 </testsuite>

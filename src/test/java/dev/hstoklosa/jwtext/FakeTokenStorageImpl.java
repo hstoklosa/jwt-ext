@@ -1,28 +1,30 @@
-package dev.hstoklosa.jwtext.storage;
+package dev.hstoklosa.jwtext;
 
 import dev.hstoklosa.jwtext.model.TokenParameters;
+import dev.hstoklosa.jwtext.storage.TokenStorage;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Basic implementation of the TokenStorage interface.
- */
-public class TokenStorageImpl implements TokenStorage {
+public class FakeTokenStorageImpl implements TokenStorage {
 
-    /** Inner map of key-value pairs. */
-    private final Map<String, String> tokens;
-
-    /** Creates an object. */
-    public TokenStorageImpl() {
-        this.tokens = new HashMap<>();
-    }
+    private final Map<String, String> tokens = new HashMap<>();
 
     private String subjectTokenKey(
             final String subject,
             final String type
     ) {
         return "tokens:" + subject + ":" + type;
+    }
+
+    @Override
+    public String get(final TokenParameters params) {
+        String tokenKey = subjectTokenKey(
+                params.getSubject(),
+                params.getType()
+        );
+
+        return tokens.get(tokenKey);
     }
 
     @Override
@@ -34,6 +36,7 @@ public class TokenStorageImpl implements TokenStorage {
                 params.getSubject(),
                 params.getType()
         );
+
         tokens.put(tokenKey, token);
     }
 
@@ -46,15 +49,7 @@ public class TokenStorageImpl implements TokenStorage {
                 params.getSubject(),
                 params.getType()
         );
-        return token.equals(tokens.get(tokenKey));
-    }
 
-    @Override
-    public String get(final TokenParameters params) {
-        String tokenKey = subjectTokenKey(
-                params.getSubject(),
-                params.getType()
-        );
-        return tokens.get(tokenKey);
+        return token.equals(tokens.get(tokenKey));
     }
 }

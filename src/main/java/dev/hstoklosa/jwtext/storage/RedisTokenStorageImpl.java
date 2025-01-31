@@ -3,10 +3,13 @@ package dev.hstoklosa.jwtext.storage;
 import dev.hstoklosa.jwtext.model.TokenParameters;
 import dev.hstoklosa.jwtext.redis.DefaultRedisSchema;
 import dev.hstoklosa.jwtext.redis.RedisSchema;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.params.SetParams;
 
+/**
+ * Implementation of TokenStorage with Redis integration.
+ */
 public class RedisTokenStorageImpl implements TokenStorage {
     
     /**
@@ -20,9 +23,9 @@ public class RedisTokenStorageImpl implements TokenStorage {
     private final RedisSchema redisSchema;
 
     /**
-     * Creates object with provided JedisPool and DefaultRedisSchema.
+     * Creates an object with the provided JedisPool and DefaultRedisSchema.
      *
-     * @param jedisPool JedisPool object
+     * @param jedisPool     JedisPool object
      */
     public RedisTokenStorageImpl(final JedisPool jedisPool) {
         this.jedisPool = jedisPool;
@@ -30,10 +33,10 @@ public class RedisTokenStorageImpl implements TokenStorage {
     }
 
     /**
-     * Creates object with provided JedisPool and RedisSchema.
+     * Creates an object with the provided JedisPool and RedisSchema.
      *
-     * @param jedisPool   JedisPool object
-     * @param redisSchema RedisSchema object
+     * @param jedisPool     JedisPool object
+     * @param redisSchema   RedisSchema object
      */
     public RedisTokenStorageImpl(
             final JedisPool jedisPool,
@@ -51,15 +54,11 @@ public class RedisTokenStorageImpl implements TokenStorage {
         try (Jedis jedis = jedisPool.getResource()) {
             String tokenKey = redisSchema.subjectTokenKey(
                     params.getSubject(),
-                    (String) params.getClaims().get("type")
+                    params.getType()
             );
-            jedis.set(
-                    tokenKey,
-                    token,
-                    SetParams.setParams().pxAt(
-                            params.getExpiredAt().getTime()
-                    )
-            );
+
+            jedis.set(tokenKey, token);
+            jedis.pexpireAt(tokenKey, params.getExpiredAt().getTime());
         }
     }
 
@@ -71,9 +70,9 @@ public class RedisTokenStorageImpl implements TokenStorage {
         try (Jedis jedis = jedisPool.getResource()) {
             String tokenKey = redisSchema.subjectTokenKey(
                     params.getSubject(),
-                    (String) params.getClaims().get("type")
+                    params.getType()
             );
-
+            
             return token.equals(jedis.get(tokenKey));
         }
     }

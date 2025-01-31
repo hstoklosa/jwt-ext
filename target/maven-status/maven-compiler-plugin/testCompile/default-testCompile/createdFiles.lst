@@ -1,2 +1,5 @@
+dev/hstoklosa/jwtext/FakeTokenStorageImpl.class
 dev/hstoklosa/jwtext/service/TokenServiceImplTest.class
-dev/hstoklosa/jwtext/service/TokenParametersTest.class
+dev/hstoklosa/jwtext/service/PersistentTokenServiceImplTests.class
+dev/hstoklosa/jwtext/storage/TokenStorageImplTests.class
+dev/hstoklosa/jwtext/model/TokenParametersTest.class
