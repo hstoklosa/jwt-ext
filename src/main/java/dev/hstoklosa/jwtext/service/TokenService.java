@@ -2,6 +2,8 @@ package dev.hstoklosa.jwtext.service;
 
 import java.util.Map;
 
+import dev.hstoklosa.jwtext.model.TokenParameters;
+
 public interface TokenService {
 
     /**

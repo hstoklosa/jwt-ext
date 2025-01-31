@@ -1,4 +1,4 @@
-package dev.hstoklosa.jwtext.service;
+package dev.hstoklosa.jwtext.model;
 
 import lombok.AccessLevel;
 import lombok.Builder;

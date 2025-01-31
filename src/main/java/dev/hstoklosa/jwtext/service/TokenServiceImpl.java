@@ -7,6 +7,9 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.ExpiredJwtException;
 
 import javax.crypto.SecretKey;
+
+import dev.hstoklosa.jwtext.model.TokenParameters;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
