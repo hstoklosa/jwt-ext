@@ -1,4 +1,4 @@
-dev/hstoklosa/jwtext/service/TokenParameters$TokenParametersBuilder.class
-dev/hstoklosa/jwtext/service/TokenParameters.class
+dev/hstoklosa/jwtext/model/TokenParameters$TokenParametersBuilder.class
+dev/hstoklosa/jwtext/model/TokenParameters.class
 dev/hstoklosa/jwtext/service/TokenServiceImpl.class
 dev/hstoklosa/jwtext/service/TokenService.class

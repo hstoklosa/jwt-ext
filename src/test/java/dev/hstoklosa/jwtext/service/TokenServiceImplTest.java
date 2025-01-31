@@ -1,6 +1,6 @@
 package dev.hstoklosa.jwtext.service;
 
-import dev.hstoklosa.jwtext.service.TokenParameters;
+import dev.hstoklosa.jwtext.model.TokenParameters;
 import dev.hstoklosa.jwtext.service.TokenServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -28,11 +28,8 @@ class TokenServiceImplTest {
         String subject = "testSubject";
         Duration duration = Duration.ofMinutes(30);
 
-        TokenParameters params = TokenParameters.builder(
-                        subject,
-                        duration
-                )
-                .build();
+        TokenParameters params = 
+            TokenParameters.builder(subject, duration).build();
         String token = tokenService.create(params);
 
         assertNotNull(token);
@@ -44,10 +41,8 @@ class TokenServiceImplTest {
         String subject = "testSubject";
         Duration duration = Duration.ofMinutes(30);
 
-        TokenParameters params = TokenParameters.builder(
-                        subject,
-                        duration
-                ).build();
+        TokenParameters params = 
+            TokenParameters.builder(subject, duration).build();
         String token = tokenService.create(params);
 
         assertFalse(tokenService.isExpired(token));
@@ -58,10 +53,8 @@ class TokenServiceImplTest {
         String subject = "testSubject";
         Duration duration = Duration.ofSeconds(1);
 
-        TokenParameters params = TokenParameters.builder(
-                        subject,
-                        duration
-                ).build();
+        TokenParameters params = 
+            TokenParameters.builder(subject, duration).build();
         String token = tokenService.create(params);
 
         try {
@@ -78,11 +71,12 @@ class TokenServiceImplTest {
         String subject = "testSubject";
         Duration duration = Duration.ofMinutes(30);
 
-        TokenParameters params = TokenParameters.builder(subject, duration)
-                .claim("testKey", "testValue")
-                .build();
-
+        TokenParameters params = 
+            TokenParameters.builder(subject, duration)
+                    .claim("testKey", "testValue")
+                    .build();
         String token = tokenService.create(params);
+
         assertTrue(tokenService.has(token, "testKey", "testValue"));
     }
 
@@ -91,11 +85,12 @@ class TokenServiceImplTest {
         String subject = "testSubject";
         Duration duration = Duration.ofMinutes(30);
 
-        TokenParameters params = TokenParameters.builder(subject, duration)
-                .claim("testKey", "testValue")
-                .build();
-
+        TokenParameters params 
+            = TokenParameters.builder(subject, duration)
+                    .claim("testKey", "testValue")
+                    .build();
         String token = tokenService.create(params);
+
         assertFalse(tokenService.has(token, "testKey", "invalidValue"));
     }
 
@@ -104,10 +99,8 @@ class TokenServiceImplTest {
         String subject = "testSubject";
         Duration duration = Duration.ofMinutes(30);
 
-        TokenParameters params = TokenParameters.builder(
-                        subject,
-                        duration
-                ).build();
+        TokenParameters params = 
+            TokenParameters.builder(subject, duration).build();
         String token = tokenService.create(params);
 
         assertEquals(subject, tokenService.getSubject(token));
@@ -122,10 +115,10 @@ class TokenServiceImplTest {
         customClaims.put("key1", "value1");
         customClaims.put("key2", 123);
 
-        TokenParameters params = TokenParameters.builder(subject, duration)
-                .claims(customClaims)
-                .build();
-
+        TokenParameters params = 
+            TokenParameters.builder(subject, duration)
+                    .claims(customClaims)
+                    .build();
         String token = tokenService.create(params);
         Map<String, Object> claims = tokenService.claims(token);
 

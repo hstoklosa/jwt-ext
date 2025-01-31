@@ -1,7 +1,8 @@
 package dev.hstoklosa.jwtext.service;
 
-import dev.hstoklosa.jwtext.service.TokenParameters;
 import org.junit.jupiter.api.Test;
+
+import dev.hstoklosa.jwtext.model.TokenParameters;
 
 import java.time.Duration;
 import java.util.Date;
@@ -18,10 +19,8 @@ class TokenParametersTest {
         String subject = "testSubject";
         Duration duration = Duration.ofMinutes(30);
 
-        TokenParameters tokenParameters = TokenParameters.builder(
-                        subject,
-                        duration
-                ).build();
+        TokenParameters tokenParameters = 
+            TokenParameters.builder(subject, duration).build();
 
         assertNotNull(tokenParameters);
         assertEquals(subject, tokenParameters.getSubject());
@@ -36,11 +35,10 @@ class TokenParametersTest {
         Duration duration = Duration.ofMinutes(30);
         Date issuedAt = new Date();
 
-        TokenParameters tokenParameters = TokenParameters.builder(
-                        subject,
-                        duration
-                ).issuedAt(issuedAt)
-                 .build();
+        TokenParameters tokenParameters = 
+            TokenParameters.builder(subject, duration)
+                    .issuedAt(issuedAt)
+                    .build();
 
         assertNotNull(tokenParameters);
         assertEquals(issuedAt, tokenParameters.getIssuedAt());
@@ -52,11 +50,10 @@ class TokenParametersTest {
         Duration duration = Duration.ofMinutes(30);
         Date expiredAt = new Date();
 
-        TokenParameters tokenParameters = TokenParameters.builder(
-                        subject,
-                        duration
-                ).expiredAt(expiredAt)
-                 .build();
+        TokenParameters tokenParameters = 
+            TokenParameters.builder(subject, duration)
+                .expiredAt(expiredAt)
+                .build();
 
         assertNotNull(tokenParameters);
         assertEquals(expiredAt, tokenParameters.getExpiredAt());
@@ -68,11 +65,10 @@ class TokenParametersTest {
         Duration duration = Duration.ofMinutes(30);
         String subject = "testSubject";
 
-        TokenParameters tokenParameters = TokenParameters.builder(
-                        baseSubject,
-                        duration
-                ).subject(subject)
-                 .build();
+        TokenParameters tokenParameters = 
+            TokenParameters.builder(baseSubject, duration)
+                .subject(subject)
+                .build();
 
         assertNotNull(tokenParameters);
         assertEquals(subject, tokenParameters.getSubject());
@@ -85,11 +81,10 @@ class TokenParametersTest {
         String key = "testKey";
         String value = "testValue";
 
-        TokenParameters tokenParameters = TokenParameters.builder(
-                        subject,
-                        duration
-                ).claim(key, value)
-                 .build();
+        TokenParameters tokenParameters = 
+            TokenParameters.builder(subject, duration)
+                .claim(key, value)
+                .build();
 
         assertNotNull(tokenParameters);
         assertEquals(value, tokenParameters.getClaims().get(key));
@@ -108,11 +103,10 @@ class TokenParametersTest {
         claims.put(key1, value1);
         claims.put(key2, value2);
 
-        TokenParameters tokenParameters = TokenParameters.builder(
-                        subject,
-                        duration
-                ).claims(claims)
-                 .build();
+        TokenParameters tokenParameters 
+            = TokenParameters.builder(subject, duration)
+                .claims(claims)
+                .build();
 
         assertNotNull(tokenParameters);
         assertEquals(value1, tokenParameters.getClaims().get(key1));
