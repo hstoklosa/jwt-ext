@@ -17,27 +17,31 @@ import java.util.Map;
 @Getter
 public class TokenParameters {
 
-    /** A map of claims to be inserted into a JWT token. */
+    /** A map containing the JWT claims to be included in the token. */
     private Map<String, Object> claims;
 
-    /** The "sub" claim of the JWT token. */
+    /** The 'sub' claim representing the subject of the JWT token. */
     private String subject;
 
-    /** The date when the JWT token was issued. */
+    /** The date the JWT token was issued. */
     private Date issuedAt;
 
-    /** The date when the JWT token will be expired. */
+    /** The expiration date of the JWT token. */
     private Date expiredAt;
 
-    /** Type of the JWT token. */
+    /** The type identifier of the JWT token. */
     private String type;
 
     /**
-     * Creates a builder for the TokenParameters class.
+     * Creates a builder for a TokenParameters instance.
      *
-     * @param subject   the subject of a JWT token
-     * @param duration  the duration between token issue and expiration date
-     * @return          a TokenParametersBuilder
+     * This method initializes the 'issuedAt' field with the current system time and computes the 'expiredAt' field by adding 
+     * the specified duration (in seconds) to the issuance time.
+     *
+     * @param subject the subject of the JWT token
+     * @param type the token type identifier
+     * @param duration the duration between token issuance and expiration, in seconds
+     * @return a TokenParametersBuilder pre-populated with the provided values and an empty claim container.
      */
     public static TokenParametersBuilder builder(
         final String subject,
@@ -58,11 +62,11 @@ public class TokenParameters {
     public static class TokenParametersBuilder {
 
         /**
-         * Insert a single claim into the data structure storing the parameters.
+         * Adds a single claim to the builder.
          *
-         * @param key       the key of claim
-         * @param value     the value of claim
-         * @return          a TokenParametersBuilder
+         * @param key the claim key
+         * @param value the claim value
+         * @return the current TokenParametersBuilder instance with the claim added.
          */
         public TokenParametersBuilder claim(
             final String key,
@@ -80,10 +84,10 @@ public class TokenParameters {
         }
 
         /**
-         * Inserts claims into a data structure storing the parameters.
+         * Adds multiple claims to the builder.
          *
-         * @param claims    a map of claims
-         * @return          TokenParametersBuilder
+         * @param claims a map containing the claims to add
+         * @return the current TokenParametersBuilder instance with all claims added.
          */
         public TokenParametersBuilder claims(final Map<String, Object> claims) {
             if (this.claims != null) {
@@ -96,10 +100,10 @@ public class TokenParameters {
         }
 
         /**
-         * Sets issued date for the provided JWT token.
+         * Sets the issuance date of the JWT token.
          *
-         * @param issuedAt  date of issuing
-         * @return          TokenParametersBuilder
+         * @param issuedAt the date when the token was issued
+         * @return the current TokenParametersBuilder instance with the issuance date set.
          */
         public TokenParametersBuilder issuedAt(final Date issuedAt) {
             this.issuedAt = issuedAt;
@@ -107,10 +111,10 @@ public class TokenParameters {
         }
 
         /**
-         * Sets expiration date for the provided JWT token.
+         * Sets the expiration date of the JWT token.
          *
-         * @param expiredAt     the expiration date
-         * @return              a TokenParametersBuilder
+         * @param expiredAt the date when the token will expire
+         * @return the current TokenParametersBuilder instance with the expiration date set.
          */
         public TokenParametersBuilder expiredAt(final Date expiredAt) {
             this.expiredAt = expiredAt;
@@ -118,10 +122,10 @@ public class TokenParameters {
         }
 
         /**
-         * Sets subject within the parameters.
+         * Sets the subject of the JWT token.
          *
-         * @param subject   the subject of a JWT token
-         * @return          a TokenParametersBuilder
+         * @param subject the subject value
+         * @return the current TokenParametersBuilder instance with the subject set.
          */
         public TokenParametersBuilder subject(final String subject) {
             this.subject = subject;
@@ -129,9 +133,9 @@ public class TokenParameters {
         }
 
         /**
-         * Builds the final object storing the claims of a token.
+         * Constructs and returns the final TokenParameters instance with all configured settings.
          *
-         * @return  a TokenParameters object
+         * @return a TokenParameters object containing the claims, subject, issuance, expiration, and type information.
          */
         public TokenParameters build() {
             return new TokenParameters(

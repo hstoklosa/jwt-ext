@@ -1,15 +1,16 @@
 package dev.hstoklosa.jwtext.redis;
 
 /**
- * Schema interface for the RedisTokenStorage implementation.
+ * Interface defining the schema for Redis token storage.
  */
 public interface RedisSchema {
+
     /**
-     * Redis key to be stored with the JWT token.
+     * Generates the Redis key used for storing a JWT token.
      *
-     * @param subject   a "sub" of JWT token
-     * @param type      the token type
-     * @return          the key to store JWT token with
+     * @param subject the JWT token subject (the "sub" claim)
+     * @param type the token type identifier
+     * @return the Redis key corresponding to the provided subject and token type
      */
     String subjectTokenKey(
             String subject,
