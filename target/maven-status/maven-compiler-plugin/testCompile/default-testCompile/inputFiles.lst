@@ -1,6 +1,0 @@
-/home/exotic/projects/jwt-ext/src/test/java/dev/hstoklosa/jwtext/FakeTokenStorageImpl.java
-/home/exotic/projects/jwt-ext/src/test/java/dev/hstoklosa/jwtext/model/TokenParametersTest.java
-/home/exotic/projects/jwt-ext/src/test/java/dev/hstoklosa/jwtext/service/PersistentTokenServiceImplTests.java
-/home/exotic/projects/jwt-ext/src/test/java/dev/hstoklosa/jwtext/service/TokenServiceImplTest.java
-/home/exotic/projects/jwt-ext/src/test/java/dev/hstoklosa/jwtext/storage/RedisTokenStorageImplTests.java
-/home/exotic/projects/jwt-ext/src/test/java/dev/hstoklosa/jwtext/storage/TokenStorageImplTests.java

@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: dev.hstoklosa.jwtext.storage.RedisTokenStorageImplTests
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 83.23 s -- in dev.hstoklosa.jwtext.storage.RedisTokenStorageImplTests
