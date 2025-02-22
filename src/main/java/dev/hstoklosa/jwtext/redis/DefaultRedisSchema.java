@@ -14,7 +14,7 @@ public class DefaultRedisSchema implements RedisSchema {
      *
      * @param subject the identifier of the subject (user/entity) associated with the token
      * @param type the type of token (e.g., "access", "refresh")
-     * @return a formatted Redis key string in the format "tokens:{subject}:{type}"
+     * @return a formatted Redis key in a string format
      */
     @Override
     public String subjectTokenKey(final String subject, final String type) {

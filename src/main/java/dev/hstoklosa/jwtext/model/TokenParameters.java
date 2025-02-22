@@ -41,7 +41,7 @@ public class TokenParameters {
      * @param subject the subject of the JWT token
      * @param type the token type identifier
      * @param duration the duration between token issuance and expiration, in seconds
-     * @return a TokenParametersBuilder pre-populated with the provided values and an empty claim container.
+     * @return a TokenParametersBuilder pre-populated with the provided values
      */
     public static TokenParametersBuilder builder(
         final String subject,
@@ -62,11 +62,11 @@ public class TokenParameters {
     public static class TokenParametersBuilder {
 
         /**
-         * Adds a single claim to the builder.
+         * Adds a single claim to the parameters.
          *
          * @param key the claim key
          * @param value the claim value
-         * @return the current TokenParametersBuilder instance with the claim added.
+         * @return the current TokenParametersBuilder instance with the claim added
          */
         public TokenParametersBuilder claim(
             final String key,
@@ -84,7 +84,7 @@ public class TokenParameters {
         }
 
         /**
-         * Adds multiple claims to the builder.
+         * Adds multiple claims to the parameters.
          *
          * @param claims a map containing the claims to add
          * @return the current TokenParametersBuilder instance with all claims added.
@@ -100,7 +100,7 @@ public class TokenParameters {
         }
 
         /**
-         * Sets the issuance date of the JWT token.
+         * Sets the issue date of the JWT token.
          *
          * @param issuedAt the date when the token was issued
          * @return the current TokenParametersBuilder instance with the issuance date set.
