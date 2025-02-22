@@ -25,7 +25,7 @@ public class TokenServiceImpl implements TokenService {
     /**
      * Creates a TokenServiceImpl object to use wrapped logic of JJWT.
      * 
-     * @param secret    the secret of a key used for token generation.
+     * @param secret the secret of a key used for token generation.
      */
     public TokenServiceImpl(final String secret) {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
