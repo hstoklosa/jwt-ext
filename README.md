@@ -6,11 +6,21 @@ An extension of the JJWT library that integrates Redis to enhance JWT management
 
 ## Key Features
 
-- Seamless JWT token management
-- Redis integration for token storage
-- Flexible token parameter configuration
-- Supports token persistence and retrieval
-- Easy-to-use API for JWT operations
+- Effortless JWT token creation and management
+- Redis integration for secure token storage
+- Configurable token parameters to meet diverse security policies
+- Persistent token storage with flexible retrieval options
+- Developer-friendly API for streamlined JWT operations
+
+## Technologies
+
+- Java 21
+- JJWT (0.12.6) for JWT handling
+- Redis integration using Jedis (5.2.0)
+- Lombok (1.18.34) for reducing boilerplate code
+- JUnit Jupiter (5.11.4) & Testcontainers (1.20.4) for testing
+- JaCoCo (0.8.12) for code coverage
+- Maven for build and dependency management
 
 ## Installation
 
@@ -24,7 +34,7 @@ Until the library is published onto Maven Central, you will need to:
 
 ### Maven (temporarily unavailable)
 
-Add the following to your `pom.xml`:
+Add the following to your `pom.xml` file and run `mvn install`:
 
 ```xml
 <dependency>
@@ -34,7 +44,7 @@ Add the following to your `pom.xml`:
 </dependency>
 ```
 
-## Usage Guide
+## Usage
 
 ### Initializing the JWT Service
 
