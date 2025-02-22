@@ -2,6 +2,7 @@ package dev.hstoklosa.jwtext.service;
 
 import dev.hstoklosa.jwtext.model.TokenParameters;
 
+import java.util.Date;
 import java.util.Map;
 
 public interface TokenService {
@@ -15,12 +16,24 @@ public interface TokenService {
     String create(TokenParameters params);
 
     /**
-     * Checks whether JWT token is expired by current time.
+     * Checks whether a token is expired based on current time.
      *
      * @param token     the JWT token to be checked for expiration
      * @return          true - if JWT token expired, false - otherwise
      */
     boolean isExpired(String token);
+
+    /**
+     * Checks whether a token is expired based on the provided time.
+     *
+     * @param token JWT token to be checked
+     * @param date  date to check expiration of JWT token
+     * @return true - if JWT token expired, false - otherwise
+     */
+    boolean isExpired(
+            String token,
+            Date date
+    );
 
     /**
      * Checks whether the token has a key-value pair within it's payload.

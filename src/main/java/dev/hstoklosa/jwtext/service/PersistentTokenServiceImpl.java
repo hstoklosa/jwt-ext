@@ -103,6 +103,17 @@ public class PersistentTokenServiceImpl implements TokenService {
      */
     @Override
     public boolean isExpired(final String token) {
+        return isExpired(
+                token,
+                new Date()
+        );
+    }
+
+    @Override
+    public boolean isExpired(
+            final String token,
+            final Date date
+    ) {
         try {
             Jws<Claims> claims = Jwts
                     .parser()
@@ -112,7 +123,7 @@ public class PersistentTokenServiceImpl implements TokenService {
 
             return claims.getPayload()
                     .getExpiration()
-                    .before(new Date());
+                    .before(date);
         } catch (ExpiredJwtException e) {
             return true;
         }
