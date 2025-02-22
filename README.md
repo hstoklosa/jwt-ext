@@ -96,11 +96,11 @@ In `TokenParameters`, you can specify the:
 - subject
 - type
 
-This all is configured via `TokenParameters` builder.
+This all is configured via the `TokenParameters` builder.
 
 ### Check if JWT token is expired
 
-To check if JWT token is expired, call the method `isExpired(String token)` on `TokenService` object.
+To check if JWT token is expired, call the method `isExpired(String token)` on a `TokenService` object.
 
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
