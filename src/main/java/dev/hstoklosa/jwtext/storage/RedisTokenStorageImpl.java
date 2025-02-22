@@ -6,6 +6,7 @@ import dev.hstoklosa.jwtext.redis.RedisSchema;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * Implementation of TokenStorage with Redis integration.
@@ -44,6 +45,52 @@ public class RedisTokenStorageImpl implements TokenStorage {
     ) {
         this.jedisPool = jedisPool;
         this.redisSchema = redisSchema;
+    }
+
+    /**
+     * Creates an object with the provided host and port.
+     *
+     * @param host the host of the Redis server
+     * @param port the port of the Redis server
+     */
+    public RedisTokenStorageImpl(
+            final String host,
+            final int port
+    ) {
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setJmxEnabled(false);
+        this.jedisPool = new JedisPool(
+                config,
+                host,
+                port
+        );
+        this.redisSchema = new DefaultRedisSchema();
+    }
+
+    /**
+     * Creates an object with the provided host, port, user, and password.
+     *
+     * @param host the host of the Redis server
+     * @param port the port of the Redis server
+     * @param user the user of the Redis server
+     * @param password the password of the Redis server
+     */
+    public RedisTokenStorageImpl(
+            final String host,
+            final int port,
+            final String user,
+            final String password
+    ) {
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setJmxEnabled(false);
+        this.jedisPool = new JedisPool(
+                config,
+                host,
+                port,
+                user,
+                password
+        );
+        this.redisSchema = new DefaultRedisSchema();
     }
 
     @Override
