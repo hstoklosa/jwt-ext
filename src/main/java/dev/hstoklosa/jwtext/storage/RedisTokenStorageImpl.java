@@ -134,5 +134,31 @@ public class RedisTokenStorageImpl implements TokenStorage {
 
             return jedis.get(tokenKey);
         }
-    } 
+    }
+
+    @Override
+    public boolean remove(final String token) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String script = """
+                    local keys = redis.call('keys', ARGV[1])
+                    for _, key in ipairs(keys) do
+                      redis.call('del', key)
+                    end
+                    return #keys > 0
+                    """;
+            Long result = (Long) jedis.eval(script, 0, "*", token);
+            
+            return result != null && result > 0;
+        }
+    }
+
+    @Override
+    public boolean remove(final TokenParameters params) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            String tokenKey = redisSchema.subjectTokenKey(
+                    params.getSubject(), params.getType()
+            );
+            return jedis.del(tokenKey) > 0;
+        }
+    }
 }

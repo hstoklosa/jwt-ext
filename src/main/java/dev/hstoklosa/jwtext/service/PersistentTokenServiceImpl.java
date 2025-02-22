@@ -19,7 +19,7 @@ import java.util.Map;
  * Implementation of TokenService that manages JWT token creation, 
  * verification, and persistence using JWT token storage.
  */
-public class PersistentTokenServiceImpl implements TokenService {
+public class PersistentTokenServiceImpl implements PersistentTokenService {
 
     /**
      * The secret key used for signing and verifying JWT tokens.
@@ -205,5 +205,15 @@ public class PersistentTokenServiceImpl implements TokenService {
                 .parseSignedClaims(token);
 
         return new HashMap<>(claims.getPayload());
+    }
+
+    @Override
+    public boolean invalidate(final String token) {
+        return tokenStorage.remove(token);
+    }
+
+    @Override
+    public boolean invalidate(final TokenParameters params) {
+        return tokenStorage.remove(params);
     }
 }
