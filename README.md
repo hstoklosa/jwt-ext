@@ -41,7 +41,7 @@ Add the following to your `pom.xml`:
 You need to create a `TokenService` object and pass your generated `secret` (base64 encoded string for JWT tokens) to the constructor.
 
 ```java
-String secret = "c29tZWxvbmdzZWNyZXRzdHJpbmdmb3JleGFtcGxlYW5kaXRuZWVkc3RvYmVsb25nDQo=";
+String secret = "e94cf7017da408f96589e9d4b33d2f018c4bf56b3467d901c632d3fb91f0dafd=";
 TokenService tokenService = new TokenServiceImpl(secret);
 ```
 
@@ -58,15 +58,14 @@ For this look at `TokenStorage` class. Use `TokenStorageImpl` for in-memory
 storage (default) and `RedisTokenStorageImpl` for Redis storage.
 
 ```java
-String secret = "c29tZWxvbmdzZWNyZXRzdHJpbmdmb3JleGFtcGxlYW5kaXRuZWVkc3RvYmVsb25nDQo=";
+String secret = "e94cf7017da408f96589e9d4b33d2f018c4bf56b3467d901c632d3fb91f0dafd=";
 TokenService tokenService = new PersistentTokenServiceImpl(secret);
 ```
 
-With Redis you need to pass `RedisTokenStorageImpl` object to constructor.
-To create `RedisTokenStorageImpl` you need to pass JedisPool
+To use Redis you need to pass the `RedisTokenStorageImpl` object to constructor, and to create the `RedisTokenStorageImpl` you need to pass a JedisPool.
 
 ```java
-String secret = "c29tZWxvbmdzZWNyZXRzdHJpbmdmb3JleGFtcGxlYW5kaXRuZWVkc3RvYmVsb25nDQo=";
+String secret = "e94cf7017da408f96589e9d4b33d2f018c4bf56b3467d901c632d3fb91f0dafd=";
 
 JedisPoolConfig config = new JedisPoolConfig();
 config.setJmxEnabled(false);
@@ -76,32 +75,32 @@ TokenStorage tokenStorage = new RedisTokenStorageImpl(jedisPool);
 TokenService tokenService = new PersistentTokenServiceImpl(secret, tokenStorage);
 ```
 
-You can choose your own `RedisSchema` which is used to generate a Redis key for JWT token. Just pass it as argument in `RedisTokenStorageImpl` constructor. By default, library uses key `"tokens:" + subject + ":" + type`.
+You can choose your own `RedisSchema` which is used to generate a Redis key for the JWT token. Just pass it as an argument in `RedisTokenStorageImpl` constructor. By default, the library uses a key format of `"tokens:" + subject + ":" + type`.
 
 ### Create JWT token
 
-To create token call method `create(TokenParameters params)` on `TokenService` object.
+To create a token, call the method `create(TokenParameters params)` on the `TokenService` object.
 
 ```java
-Durtation duration = Duration.of(1, ChronoUnit.HOURS);
+Duration duration = Duration.of(1, ChronoUnit.HOURS);
 String token = tokenService.create(
     TokenParameters.builder("user@example.com", duration).build()
 );
 ```
 
-You can specify in `TokenParameters`:
+In `TokenParameters`, you can specify the:
 
 - claims to be put in JWT token
-- JWT token issuing date
-- JWT token expiration date
-- "sub" of JWT token
-- type of JWT token
+- issue date
+- expiration date
+- subject
+- type
 
 This all is configured via `TokenParameters` builder.
 
 ### Check if JWT token is expired
 
-To check if JWT token is expired call method `isExpired(String token)` on `TokenService` object.
+To check if JWT token is expired, call the method `isExpired(String token)` on `TokenService` object.
 
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
@@ -110,7 +109,7 @@ boolean expired = tokenService.isExpired(token);
 
 ### Check if JWT token has claim
 
-To check if JWT token has claim in payload call the method `has(String token, String key, Object value)` on `TokenService` object.
+To check if JWT token has claim in payload, call the method `has(String token, String key, Object value)` on `TokenService` object.
 
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
@@ -120,22 +119,23 @@ String value = "1234567890";
 boolean hasSubject = tokenService.has(token, key, value);
 ```
 
-### Get subject from JWT token
+### Retrieve the subject from a token
 
-To get subject from JWT token payload call method `getSubject(String token)` on `TokenService` object.
+To get the subject from a JWT token payload, call the method `getSubject(String token)` on a `TokenService` object.
 
-**Note:** Optionally, you can call the method `claims(token).get("sub").toString()` on `TokenService` object.
+**Note:** Optionally, you can call the method `claims(token).get("sub").toString()` on a `TokenService` object.
 
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 String subject = tokenService.getSubject(token);
+
+System.out.println(subject);
 ```
 
-### Get claims from JWT token
+### Retrieve all claims from a token
 
 To get all claims from JWT token payload call method `claims(String token)`
-on `TokenService`
-object.
+on `TokenService` object.
 
 ```java
 String token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
@@ -144,7 +144,7 @@ Map<String, Object> claims = tokenService.claims(token);
 claims.forEach((key, value) -> System.out.println(key + " " + value));
 ```
 
-### Get type from JWT token
+### Retrieve the type of a token
 
 To get type from JWT token payload call method `getType(String token)`
 on `TokenService` object.
@@ -152,6 +152,7 @@ on `TokenService` object.
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 String subject = tokenService.getType(token);
+
 System.out.println(subject);
 ```
 
