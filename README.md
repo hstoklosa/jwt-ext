@@ -84,8 +84,7 @@ You can choose your own RedisSchema, which is used to generate a Redis key for t
 With PersistentTokenService, you can invalidate a token by the token itself or by subject and token type. If the first option is chosen, all keys with such token values will be deleted. If the token is deleted from storage, you will receive `true`.
 
 ```java
-String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-
+String token    = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 boolean deleted = persistentTokenService.invalidate(token);
 ```
 
@@ -109,13 +108,12 @@ TokenParameters params = TokenParameters
 String token = tokenService.create(params);
 ```
 
-In TokenParameters, you can specify:
+In TokenParameters, you can specify the claims of the JWT token, such as:
 
-- Claims to be put in the JWT token
-- JWT token issuing date
-- JWT token expiration date
-- "sub" of the JWT token
-- Type of the JWT token
+- issuing date
+- expiration date
+- subject of the token
+- type of the token
 
 All of this is configured via the TokenParameters builder.
 
@@ -124,8 +122,7 @@ All of this is configured via the TokenParameters builder.
 To check if a JWT token is expired, call the `isExpired(String token)` method on the TokenService object.
 
 ```java
-String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-
+String token    = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 boolean expired = tokenService.isExpired(token);
 ```
 
@@ -133,7 +130,7 @@ You can also check expiration with any other date.
 
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-Date date = new Date(1705911211182);
+Date date    = new Date(1705911211182);
 
 boolean expired = tokenService.isExpired(token, date);
 ```
@@ -144,7 +141,7 @@ To check if a JWT token has a claim in the payload, call the `has(String token, 
 
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-String key = "subject";
+String key   = "subject";
 String value = "1234567890";
 
 boolean hasSubject = tokenService.has(token, key, value);
@@ -157,8 +154,7 @@ To get the subject from the JWT token payload, call the `getSubject(String token
 **Note:** Optionally, you can call the `claims(token).get("sub").toString()` method on the TokenService object.
 
 ```java
-String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-
+String token   = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 String subject = tokenService.getSubject(token);
 ```
 
@@ -167,8 +163,7 @@ String subject = tokenService.getSubject(token);
 To get the type from the JWT token payload, call the `getType(String token)` method on the TokenService object.
 
 ```java
-String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-
+String token   = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 String subject = tokenService.getType(token);
 ```
 
@@ -189,7 +184,6 @@ To get a claim by its name from the JWT token payload, call the `claim(String to
 
 ```java
 String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-
 String claim = (String) tokenService.claim(token, "subject");
 ```
 
